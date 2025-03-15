@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"golang.org/x/exp/rand"
+	"math/rand"
+
 )
 
 
@@ -51,11 +52,8 @@ func GenerujPESEL(birthDate time.Time, gender string) [11]int {
 	var wagi = [4]int{1, 3, 7, 9}
 
 	var suma int = 0
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 10; i++ { //tu rangem
 		liczba := cyfryPESEL[i] * wagi[i%4] % 10
-		// if liczba >= 10 {
-		// 	liczba = liczba % 10
-		// }
 		suma += liczba
 	}
 
@@ -65,20 +63,25 @@ func GenerujPESEL(birthDate time.Time, gender string) [11]int {
 	return cyfryPESEL
 }
 
-// WeryfikujPESEL: weryfikuje poprawność numeru PESEL
-// Parametry:
-// - cyfryPESEL: Tablica z cyframi numeru PESEL
-// Wyjscie:
-//zmienna bool
 
 func WeryfikujPESEL(cyfryPESEL [11]int) bool {
 
 	var czyPESEL bool
+	var wagi = [4]int{1, 3, 7, 9}
+	var suma int = 0
+	for i := 0; i < 10; i++ {
+		liczba := cyfryPESEL[i] * wagi[i%4] % 10
+		suma += liczba
+	}
+
+	czyPESEL = (10-(suma%10) == cyfryPESEL[10])
 
 	return czyPESEL
 }
 
 func main() { 
+	rand.Seed(time.Now().UnixNano())
+
 	birthDate := time.Date(1980, 2, 26, 0, 0, 0, 0, time.UTC)
 
 	pesel := GenerujPESEL(birthDate, "M")
