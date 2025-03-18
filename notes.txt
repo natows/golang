@@ -1,0 +1,34 @@
+make - funkcja sluzaca do tworzenia map i sliceow
+
+skladnia make dla mapy
+mapa := make(map[typKlucza]typWartosci)
+
+struct - (struktura) zbior zmiennych ktore moga miec rozne typy
+
+type nazwaStruktury struct {
+    pole1 type
+    pole2 type
+    pole3 type
+    .
+    .
+    .
+}
+
+record := nazwaStruktury{
+    pole1: wartosc,
+    .
+    .
+    .
+}
+
+var struktura nazwaStruktury
+json.Unmarshal - funkcja pakietu encoding/json konwertuje dane json do struktury w go
+dziala na typie byte
+
+json.Unmarshal(jsonDaneBitowe, &struktura)
+
+& - referencja do elementu, przekazujemy wskaznik do elementu aby zapisac tam dane
+
+
+io - pakiet sluzacy do operacji wejscia wyjscia (czytanie i pisanie danych)
+io.ReadAll - czyta wszystkie dane z io.Reader i zwraca []byte
