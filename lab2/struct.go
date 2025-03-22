@@ -85,7 +85,7 @@ func main() {
 
 	//sortowanie po stringach entity
 	sortData(&response, "entity")
-	fmt.Println("Sorted by entity:")
+	// fmt.Println("Sorted by entity:")
 	// for _, record := range response.Results {
 	// 	fmt.Printf("Entity: %s\nCurrency: %s\nAlphabetic Code: %s\nNumeric Code: %s\nMinor Unit: %s\n\n", record.Entity, record.Currency, record.AlphabeticCode, record.NumericCode, record.MinorUnit)
 
@@ -93,7 +93,7 @@ func main() {
 
 	//sortowanie po intach numeric code
 	sortData(&response, "numericcode")
-	fmt.Println("Sorted by numeric code:")
+	// fmt.Println("Sorted by numeric code:")
 	// for _, record := range response.Results {
 	// 	fmt.Printf("Entity: %s\nCurrency: %s\nAlphabetic Code: %s\nNumeric Code: %s\nMinor Unit: %s\n\n", record.Entity, record.Currency, record.AlphabeticCode, record.NumericCode, record.MinorUnit)
 	// }
