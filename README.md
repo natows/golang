@@ -1,4 +1,5 @@
-Repozytorium mające służyć nauce języka **Go (Golang)** poprzez praktyczne przykłady i implementacje. 
+## GOlang
+### Repozytorium mające służyć nauce języka **Go (Golang)** poprzez praktyczne przykłady i implementacje. 
 
 Dotychczas zaimplementowane elementy języka:
 
