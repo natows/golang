@@ -11,19 +11,29 @@ import (
 )
 
 
+type DataSource interface {
+    LoadData(path string) ([]StockExchangeData, error)
+    
+    Name() string
+}
 
-func loadData(filePath string) ([]StockExchangeData, error) {
+
+type CSVDataSource struct{}
+
+func (ds *CSVDataSource) Name() string {
+    return "CSV"
+}
+
+func SetDataSource(filePath string) (DataSource, error) {
 	if strings.HasSuffix(strings.ToLower(filePath), ".csv") {
-		return loadCSV(filePath)
+		return &CSVDataSource{}, nil
 	}
-	// if filePath.hasSuffix(".json") {
-	// 	return loadJSON(filePath)
-	// }
+	
 	return nil, fmt.Errorf("unsupported file format: %s", filePath)
 }
 
 
-func loadCSV(filePath string) ([]StockExchangeData, error) {
+func (ds *CSVDataSource) LoadData(filePath string)([]StockExchangeData, error) {
 	file, err := os.Open(filePath)
 	errorHandler("Error opening file: ", err)
 	defer file.Close()
@@ -51,11 +61,6 @@ func loadCSV(filePath string) ([]StockExchangeData, error) {
             return nil, fmt.Errorf("error parsing Close value at row %d: %w", i, err)
         }
 
-		// volumeStr := strings.ReplaceAll(record[2], ",", "")
-        // volumeVal, err := strconv.Atoi(volumeStr)
-        // if err != nil {
-        //     return nil, fmt.Errorf("error parsing Volume value at row %d: %w", i, err)
-        // }
 
 		openStr := strings.ReplaceAll(record[3], "$", "")
         openVal, err := strconv.ParseFloat(openStr, 64)
